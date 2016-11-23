@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block ng_app %}menuApp{% endblock %}
+
+{% block content %}
+<h1> Menu section</h1>
+
+<section ng-controller="MenuCtrl" ng-init="init()">
+    <div ng-include src="currentTpl"></div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/controllers/menuCtrl.js' %}"></script>
+    <script src="{% static 'js/services/apiService.js' %}"></script>
+{% endblock %}
+
+{% block ng_templates %}
+    {% include 'menu/details.html' %}
+    {% include 'menu/list.html' %}
+{% endblock %}

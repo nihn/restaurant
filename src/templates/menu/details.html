@@ -1,0 +1,25 @@
+<script type="text/ng-template" id="/menu/details">
+    {% verbatim %}
+    <table ng-init="collectDishes(currentMenu)" title="selectedMenu">
+        <tr>
+            <td>Id</td>
+            <td>{{ currentMenu.id }}</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>{{ currentMenu.name }}</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td>{{ currentMenu.description }}</td>
+        </tr>
+        <tr>
+            <td>Dishes</td>
+            <td><span ng-repeat="dish in currentMenu.dishes track by dish.id">
+                <li>{{ dish.name }}</li>
+            </span>
+            </td>
+        </tr>
+    </table>
+    {% endverbatim %}
+</script>

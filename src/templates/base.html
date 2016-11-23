@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Restaurant{% endblock %}</title>
+    <script>
+        window.MENU_API_URL = "{% url 'menu-index' %}";
+    </script>
+    {% block css %}
+    <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+    {% endblock %}
+</head>
+<body data-ng-app="{% block ng_app %}{% endblock %}">
+{% block content %}
+{% endblock %}
+{% block js %}
+    <script src="{% static 'vendor/angular/angular.min.js' %}"></script>
+    <script src="{% static 'vendor/angular/angular-cache.js' %}"></script>
+    <script src="{% static 'vendor/angular/ng-table.min.js' %}"></script>
+{% endblock %}
+{% block ng_templates %}
+{% endblock %}
+{% block extra_js %}
+{% endblock %}
+</body>
+</html>

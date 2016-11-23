@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.core.exceptions import ValidationError
 from django.db import models
 
@@ -22,18 +24,21 @@ class BaseModel(models.Model):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.name
+
 
 class Dish(BaseModel):
     class Meta:
         verbose_name_plural = 'Dishes'
 
-    name = models.TextField(max_length=30)
+    name = models.CharField(max_length=30)
     price = PositiveFloatField()
-    preparing_time = models.DurationField()
+    preparing_time = models.DurationField(default=timedelta(minutes=15))
     vegetarian = models.BooleanField(default=False)
 
 
 class Menu(BaseModel):
-    name = models.TextField(max_length=15, unique=True)
-    dishes = models.ManyToManyField(Dish)
-    description = models.TextField()
+    name = models.CharField(max_length=15, unique=True)
+    dishes = models.ManyToManyField(Dish, blank=True)
+    description = models.TextField(blank=True)

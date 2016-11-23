@@ -1,0 +1,18 @@
+<script type="text/ng-template" id="/menu/list">
+<h1>Menus</h1>
+    {% verbatim %}
+    <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+        <tr ng-repeat="menu in $data track by menu.id" ng-click="selectMenu(menu)" ng-if="menu.dishes.length">
+            <td title="'Id'" sortable="'pk'">
+                {{ menu.id }}
+            </td>
+            <td title="'Name'" sortable="'name'">
+                {{ menu.name }}
+            </td>
+            <td title="'Dishes'" sortable="'dishes.length'">
+                {{ menu.dishes.length }}
+            </td>
+        </tr>
+    </table>
+    {% endverbatim %}
+</script>
