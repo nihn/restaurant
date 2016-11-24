@@ -6,7 +6,7 @@
         <h5>last modified: {{ currentMenu.mtime }}</h5>
         <h5>created: {{ currentMenu.ctime }}</h5>
         <h3>Dishes:</h3>
-        <table ng-table="dishesTableParams" ng-init="collectDishes(currentMenu)" cellpadding="5">
+        <table ng-table="dishesTableParams" ng-init="collectDishes(currentMenu)" cellpadding="5" class="table">
             <tr ng-repeat="dish in $data track by dish.id">
                 <td title="'Name'" sortable="'name'">
                     {{ dish.name }}
@@ -19,6 +19,9 @@
                 </td>
                 <td title="'Vegetarian'" sortable="'vegetarian'">
                     {{ dish.vegetarian }}
+                </td>
+                <td title="'Image'">
+                    <img ng-src="{{ dish.image }}" height="100">
                 </td>
             </tr>
         </table>
