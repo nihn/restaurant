@@ -3,8 +3,8 @@
     <div layout="column" layout-margin>
         <h1>Menu: {{ currentMenu.name }}</h1>
         <p>{{ currentMenu.description }}</p>
-        <h5>last modified: {{ currentMenu.mtime }}</h5>
-        <h5>created: {{ currentMenu.ctime }}</h5>
+        <h5>last modified: {{ currentMenu.mtime | date:'medium' }}</h5>
+        <h5>created: {{ currentMenu.ctime | date:'medium' }}</h5>
         <h3>Dishes:</h3>
         <table ng-table="dishesTableParams" ng-init="collectDishes(currentMenu)" cellpadding="5" class="table">
             <tr ng-repeat="dish in $data track by dish.id">
