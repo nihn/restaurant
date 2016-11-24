@@ -5,12 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Restaurant{% endblock %}</title>
+    <img src="{% static 'logo.png' %}">
     <script>
         window.MENU_API_URL = "{% url 'menu-index' %}";
     </script>
     {% block css %}
     <link rel="stylesheet" href="{% static 'vendor/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/angular/angular-material.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/nprogress/nprogress.css' %}">
     {% endblock %}
 </head>
 <body data-ng-app="{% block ng_app %}{% endblock %}">
@@ -20,6 +22,7 @@
     <script src="{% static 'vendor/angular/angular.min.js' %}"></script>
     <script src="{% static 'vendor/angular/angular-cache.js' %}"></script>
     <script src="{% static 'vendor/angular/ng-table.min.js' %}"></script>
+    <script src="{% static 'vendor/nprogress/nprogress.js' %}"></script>
 {% endblock %}
 {% block ng_templates %}
 {% endblock %}

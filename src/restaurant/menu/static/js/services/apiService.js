@@ -17,38 +17,36 @@
     var menusCache = CacheFactory.get('menusCache');
     var dishesCache = CacheFactory.get('dishesCache');
 
-    var handleResponse = function (data, fun, params) {
+    var handleResponse = function (data, params) {
       if (data.next) {
         params.successCallback(data.results);
         params.url = data.next;
-        fun(params);
+        doRequest(params);
       } else {
-        params.successCallback(data.results || data)
+        params.successCallback(data.results || data);
       }
     };
 
-    return {
-      getMenus: function getMenus(params) {
-        return $http.get(params.url || getMenusUrl, {cache: menusCache,
+    var doRequest = function (params, base_url, cache) {
+      NProgress.start();
+      return $http.get(params.url || base_url, {cache: cache,
           timeout: timeout}).then(
             function (response) {
           if (response.status === 200) {
-            handleResponse(response.data, getMenus, params)
+            handleResponse(response.data, params);
           } else {
             params.errorCallback(response.data);
           }
+          NProgress.done();
         }, params.errorCallback);
+      };
+
+    return {
+      getMenus: function (params) {
+        return doRequest(params, getMenusUrl, menusCache);
       },
-      getDishesFromMenu: function getDishesFromMenu(params) {
-        return $http.get(params.url || apiUrl + params.menu.id + '/dishes',
-          {cache: dishesCache, timeout: timeout}).then(
-            function (response) {
-          if (response.status === 200) {
-            handleResponse(response.data, getDishesFromMenu, params)
-          } else {
-            params.errorCallback(response.data);
-          }
-        }, params.errorCallback);
+      getDishesFromMenu: function (params) {
+        return doRequest(params, apiUrl + params.menu.id + '/dishes', dishesCache);
       }
     }
   }]);
