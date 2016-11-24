@@ -83,7 +83,7 @@ TIME_ZONE = 'UTC'
 USE_TZ = True
 
 
-MEDIA_ROOT = '/var/uploads'
+MEDIA_ROOT = '/var/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 STATIC_URL = '/static/'

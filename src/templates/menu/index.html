@@ -5,11 +5,11 @@
 {% block ng_app %}menuApp{% endblock %}
 
 {% block content %}
-<h1> Menu section</h1>
-
-<section ng-controller="MenuCtrl" ng-init="init()">
-    <div ng-include src="currentTpl"></div>
-</section>
+<div style="padding-left: 20px;">
+    <section ng-controller="MenuCtrl" ng-init="init()">
+        <div ng-include src="currentTpl"></div>
+    </section>
+</div>
 {% endblock %}
 
 {% block extra_js %}

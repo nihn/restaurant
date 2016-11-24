@@ -1,5 +1,4 @@
 <script type="text/ng-template" id="/menu/list">
-<h1>LIST</h1>
     {% verbatim %}
     <table ng-table="menusTableParams" cellpadding="5" class="table">
         <tr ng-repeat="menu in $data track by menu.id" ng-click="selectMenu(menu)" ng-if="menu.dishes.length">
