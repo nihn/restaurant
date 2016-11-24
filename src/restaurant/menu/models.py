@@ -18,8 +18,8 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
-    ctime = models.DateField(auto_now_add=True)
-    mtime = models.DateField(auto_now=True)
+    ctime = models.DateTimeField(auto_now_add=True)
+    mtime = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.name
