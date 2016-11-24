@@ -14,20 +14,25 @@
       NgTableParams,
       apiService) {
 
-    $scope.tableParams = new NgTableParams({count: 5});
+    $scope.menusTableParams = new NgTableParams({count: 5});
+    $scope.dishesTableParams = new NgTableParams({count: 5});
     $scope.currentMenu = null;
 
     $scope.init = function() {
       $scope.currentTpl = '/menu/list';
-      apiService.getMenus(function (data) {
+      var menus = [];
+      $scope.menusTableParams.settings({
+        dataset: menus
+      });
+
+      apiService.getMenus({successCallback: function (data) {
         $log.debug('Got response from menus api', data);
-        $scope.tableParams.settings({
-          dataset: data
-        });
-      }, function (res) {
+        menus.push.apply(menus, data);
+        $scope.menusTableParams.reload();
+      }, errorCallback: function (res) {
         $log.debug(res);
         $log.error('Failed to get menus list');
-      });
+      }});
 
       $log.debug('Loading')
     };
@@ -38,10 +43,17 @@
     };
 
     $scope.collectDishes = function (menu) {
-      apiService.getDishesFromMenu(menu, function (res) {
-        $log.debug('Got ' + res.length + ' dishes');
-        $scope.currentMenu.dishes = res;
-      })
+      var dishes = [];
+       $scope.dishesTableParams.settings({
+        dataset: dishes
+      });
+
+      $scope.currentMenu.dishes = dishes;
+      apiService.getDishesFromMenu({menu: menu, successCallback: function (res) {
+        $log.debug('Got dishes: ', res);
+        dishes.push.apply(dishes, res);
+        $scope.dishesTableParams.reload();
+      }})
     }
     }]);
 }());

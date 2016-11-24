@@ -9,7 +9,8 @@
         window.MENU_API_URL = "{% url 'menu-index' %}";
     </script>
     {% block css %}
-    <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/angular/angular-material.css' %}">
     {% endblock %}
 </head>
 <body data-ng-app="{% block ng_app %}{% endblock %}">

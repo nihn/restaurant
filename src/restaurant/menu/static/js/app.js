@@ -9,13 +9,4 @@
     'menuApp.controllers.menuCtrl',
     'menuApp.services.apiService',
   ]);
-
-  menuApp.config([
-    'CacheFactoryProvider',
-    function(CacheFactoryProvider) {
-      angular.extend(CacheFactoryProvider.defaults, {
-        storageMode: 'localStorage'
-      });
-  }]);
-
 }());

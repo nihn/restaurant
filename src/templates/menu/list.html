@@ -1,9 +1,9 @@
 <script type="text/ng-template" id="/menu/list">
-<h1>Menus</h1>
+<h1>LIST</h1>
     {% verbatim %}
-    <table ng-table="tableParams" class="table table-condensed table-bordered table-striped">
+    <table ng-table="menusTableParams" cellpadding="5" class="table">
         <tr ng-repeat="menu in $data track by menu.id" ng-click="selectMenu(menu)" ng-if="menu.dishes.length">
-            <td title="'Id'" sortable="'pk'">
+            <td title="'Id'" sortable="'id'">
                 {{ menu.id }}
             </td>
             <td title="'Name'" sortable="'name'">
