@@ -37,7 +37,7 @@ class Dish(BaseModel):
     preparing_time = models.DurationField(default=timedelta(minutes=15))
     vegetarian = models.BooleanField(default=False)
     # Should be uploaded to CDN
-    image = models.ImageField(upload_to='uploads')
+    image = models.ImageField(upload_to='uploads', blank=True)
 
 
 class Menu(BaseModel):
