@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Restaurant{% endblock %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}"/>
     <img src="{% static 'logo.png' %}">
     <script>
         window.MENU_API_URL = "{% url 'menu-index' %}";
