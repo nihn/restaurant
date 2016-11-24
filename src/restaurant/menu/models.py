@@ -36,6 +36,8 @@ class Dish(BaseModel):
     price = PositiveFloatField()
     preparing_time = models.DurationField(default=timedelta(minutes=15))
     vegetarian = models.BooleanField(default=False)
+    # Should be uploaded to CDN
+    image = models.ImageField(upload_to='/var/uploads')
 
 
 class Menu(BaseModel):
