@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.views.generic import TemplateView
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
@@ -8,9 +9,9 @@ from restaurant.menu.serializers import MenuSerializer, DishSerializer
 
 
 class FetchSizePagination(PageNumberPagination):
-    page_size = 1
+    page_size = settings.FETCH_PAGE_SIZE
     page_size_query_param = 'fetch'
-    max_page_size = 5
+    max_page_size = settings.FETCH_PAGE_MAX
 
 
 class IndexView(TemplateView):

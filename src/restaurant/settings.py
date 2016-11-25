@@ -96,3 +96,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     )
 }
+
+FETCH_PAGE_SIZE = int(os.getenv('FETCH_PAGE_SIZE', 5))
+FETCH_PAGE_MAX = int(os.getenv('FETCH_PAGE_MAX', 100))
