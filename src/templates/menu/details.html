@@ -18,7 +18,7 @@
                     {{ dish.preparing_time }}
                 </td>
                 <td title="'Vegetarian'" sortable="'vegetarian'">
-                    {{ dish.vegetarian }}
+                    {{ dish.vegetarian ? 'yes' : 'no' }}
                 </td>
                 <td title="'Image'">
                     <img ng-src="{{ dish.image }}" height="100">
