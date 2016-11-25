@@ -16,5 +16,5 @@ Run `./tests.sh`
 Run `./backup-testdata.sh`.
 
 ## Applying test dataset ##
-Run `./apply-testdata.sh`. Note if you want to do it second time then you should
-first remove old docker volume (restaurant_data).
+Run `./apply-testdata.sh`. Note if you want to do this when postgres was already started then you
+need to remove data volume `docker-compose stop && docker-compose rm -f && docker volume rm restaurant_data`.
