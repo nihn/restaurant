@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="/menu/list">
     {% verbatim %}
     <table ng-table="menusTableParams" cellpadding="5" class="table">
-        <tr ng-repeat="menu in $data track by menu.id" ng-click="selectMenu(menu)" ng-if="menu.dishes.length">
+        <tr ng-repeat="menu in $data track by menu.id" ng-click="selectMenu(menu)" ng-if="menu.dishes.length" style="cursor: pointer;">
             <td title="'Id'" sortable="'id'">
                 {{ menu.id }}
             </td>
