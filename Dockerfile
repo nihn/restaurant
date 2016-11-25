@@ -1,6 +1,7 @@
 FROM python:3.5-slim
 
 COPY src/freeze.txt freeze.txt
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential libpq-dev && \
     pip install -r freeze.txt && \
