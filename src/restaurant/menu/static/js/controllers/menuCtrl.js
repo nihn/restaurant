@@ -4,22 +4,20 @@
   angular.module('menuApp.controllers.menuCtrl', ['ngTable'])
     .controller('MenuCtrl', [
       '$scope',
-      '$rootScope',
       '$log',
       'NgTableParams',
       'apiService', function(
       $scope,
-      $rootScope,
       $log,
       NgTableParams,
       apiService) {
 
-    $scope.menusTableParams = new NgTableParams({count: 5});
-    $scope.dishesTableParams = new NgTableParams({count: 5});
+    $scope.menusTableParams = new NgTableParams({count: 5}, {counts: []});
+    $scope.dishesTableParams = new NgTableParams({count: 5}, {counts: []});
     $scope.currentMenu = null;
 
     $scope.init = function() {
-      $scope.currentTpl = '/menu/list';
+      go('/menu/list');
       var menus = [];
       $scope.menusTableParams.settings({
         dataset: menus
@@ -39,7 +37,7 @@
 
     $scope.selectMenu = function (menu) {
       $scope.currentMenu = menu;
-      $scope.currentTpl = '/menu/details';
+      go('/menu/details');
     };
 
     $scope.collectDishes = function (menu) {
@@ -54,6 +52,54 @@
         dishes.push.apply(dishes, res);
         $scope.dishesTableParams.reload();
       }})
+    };
+
+    angular.element(window).on('popstate', function(event) {
+      $log.debug('Pop history state', event.state);
+      var tpl;
+
+      if (event.state) {
+        tpl = event.state.tpl;
+      }
+      else {
+        $log.debug('History state is falsy', event.state);
+        tpl = '/menu/list';
+      }
+      $scope.currentTpl = tpl;
+      // Trigger reloading template
+      $scope.$apply(function () {});
+    });
+
+    function go(tpl)
+    /**
+     * Switch to give template, update history state.
+     */
+    {
+      $scope.currentTpl = tpl;
+      updateHistoryState(tpl);
+    }
+
+    function updateHistoryState(tpl)
+    /**
+     * Update history state with currently used template before switch to the
+     * new one.
+     */
+    {
+      if (!window.history || !window.history.pushState) {
+        $log.debug('History API not detected');
+        return;
+      }
+
+      var state = {tpl: tpl};
+
+      if (!history.state) {
+        history.replaceState(state, '');
+        $log.debug('Replace history state', state);
+      }
+      else if (history.state.tpl !== tpl) {
+        history.pushState(state, '');
+        $log.debug('Push history state', state);
+      }
     }
     }]);
 }());
