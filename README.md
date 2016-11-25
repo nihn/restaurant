@@ -17,4 +17,4 @@ Run `./backup-testdata.sh`.
 
 ## Applying test dataset ##
 Run `./apply-testdata.sh`. Note if you want to do this when postgres was already started then you
-need to remove data volume `docker-compose stop && docker-compose rm -f && docker volume rm restaurant_data`.
+need to remove data volume `docker-compose stop && docker-compose rm -f && docker volume rm restaurant_data`. Tests datasets credentails are admin:admin.
